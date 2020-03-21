@@ -1,5 +1,7 @@
 const express = require("express");
 const path = require("path");
+require('dotenv').config();
+
 
 const connectionString = process.env.DATABASE_URL || "postgres://sbulohmxxomdxe:65fa3a1accfcec82dda81fe6c36e8dd1927ca810389ef9251f1e2070931f0f9a@ec2-3-229-210-93.compute-1.amazonaws.com:5432/d9ko034i4tp4rp?ssl=true";
 

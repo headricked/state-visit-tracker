@@ -18,106 +18,54 @@ CREATE TABLE visited
     stateid INT NOT NULL REFERENCES states(id)
 );
 
--- data to populate us_states table
-INSERT INTO us_states (stateName) VALUES ('Alabama');
-
-INSERT INTO us_states (stateName) VALUES ('Alaska');
-
-INSERT INTO us_states (stateName) VALUES ('Arizona');
-
-INSERT INTO us_states (stateName) VALUES ('Arkansas');
-
-INSERT INTO us_states (stateName) VALUES ('California');
-
-INSERT INTO us_states (stateName) VALUES ('Colorado');
-
-INSERT INTO us_states (stateName) VALUES ('Connecticut');
-
-INSERT INTO us_states (stateName) VALUES ('Delaware');
-
-INSERT INTO us_states (stateName) VALUES ('Florida');
-
-INSERT INTO us_states (stateName) VALUES ('Georgia');
-
-INSERT INTO us_states (stateName) VALUES ('Hawaii');
-
-INSERT INTO us_states (stateName) VALUES ('Idaho');
-
-INSERT INTO us_states (stateName) VALUES ('Illinois');
-
-INSERT INTO us_states (stateName) VALUES ('Indiana');
-
-INSERT INTO us_states (stateName) VALUES ('Iowa');
-
-INSERT INTO us_states (stateName) VALUES ('Kansas');
-
-INSERT INTO us_states (stateName) VALUES ('Kentucky');
-
-INSERT INTO us_states (stateName) VALUES ('Louisiana');
-
-INSERT INTO us_states (stateName) VALUES ('Maine');
-
-INSERT INTO us_states (stateName) VALUES ('Maryland');
-
-INSERT INTO us_states (stateName) VALUES ('Massachusetts');
-
-INSERT INTO us_states (stateName) VALUES ('Michigan');
-
-INSERT INTO us_states (stateName) VALUES ('Minnesota');
-
-INSERT INTO us_states (stateName) VALUES ('Mississippi');
-
-INSERT INTO us_states (stateName) VALUES ('Missouri');
-
-INSERT INTO us_states (stateName) VALUES ('Montana');
-
-INSERT INTO us_states (stateName) VALUES ('Nebraska');
-
-INSERT INTO us_states (stateName) VALUES ('Nevada');
-
-INSERT INTO us_states (stateName) VALUES ('New Hampshire');
-
-INSERT INTO us_states (stateName) VALUES ('New Jersey');
-
-INSERT INTO us_states (stateName) VALUES ('New Mexico');
-
-INSERT INTO us_states (stateName) VALUES ('New York');
-
-INSERT INTO us_states (stateName) VALUES ('North Carolina');
-
-INSERT INTO us_states (stateName) VALUES ('North Dakota');
-
-INSERT INTO us_states (stateName) VALUES ('Ohio');
-
-INSERT INTO us_states (stateName) VALUES ('Oklahoma');
-
-INSERT INTO us_states (stateName) VALUES ('Oregon');
-
-INSERT INTO us_states (stateName) VALUES ('Pennsylvania');
-
-INSERT INTO us_states (stateName) VALUES ('Rhode Island');
-
-INSERT INTO us_states (stateName) VALUES ('South Carolina');
-
-INSERT INTO us_states (stateName) VALUES ('South Dakota');
-
-INSERT INTO us_states (stateName) VALUES ('Tennessee');
-
-INSERT INTO us_states (stateName) VALUES ('Texas');
-
-INSERT INTO us_states (stateName) VALUES ('Utah');
-
-INSERT INTO us_states (stateName) VALUES ('Vermont');
-
-INSERT INTO us_states (stateName) VALUES ('Virginia');
-
-INSERT INTO us_states (stateName) VALUES ('Washington');
-
-INSERT INTO us_states (stateName) VALUES ('Washington DC');
-
-INSERT INTO us_states (stateName) VALUES ('West Virginia');
-
-INSERT INTO us_states (stateName) VALUES ('Wisconsin');
-
-INSERT INTO us_states (stateName) VALUES ('Wyoming');
-
+-- data to populate states table
+INSERT INTO states (statename) VALUES ('Alabama');
+INSERT INTO states (statename) VALUES ('Alaska');
+INSERT INTO states (statename) VALUES ('Arizona');
+INSERT INTO states (statename) VALUES ('Arkansas');
+INSERT INTO states (statename) VALUES ('California');
+INSERT INTO states (statename) VALUES ('Colorado');
+INSERT INTO states (statename) VALUES ('Connecticut');
+INSERT INTO states (statename) VALUES ('Delaware');
+INSERT INTO states (statename) VALUES ('Florida');
+INSERT INTO states (statename) VALUES ('Georgia');
+INSERT INTO states (statename) VALUES ('Hawaii');
+INSERT INTO states (statename) VALUES ('Idaho');
+INSERT INTO states (statename) VALUES ('Illinois');
+INSERT INTO states (statename) VALUES ('Indiana');
+INSERT INTO states (statename) VALUES ('Iowa');
+INSERT INTO states (statename) VALUES ('Kansas');
+INSERT INTO states (statename) VALUES ('Kentucky');
+INSERT INTO states (statename) VALUES ('Louisiana');
+INSERT INTO states (statename) VALUES ('Maine');
+INSERT INTO states (statename) VALUES ('Maryland');
+INSERT INTO states (statename) VALUES ('Massachusetts');
+INSERT INTO states (statename) VALUES ('Michigan');
+INSERT INTO states (statename) VALUES ('Minnesota');
+INSERT INTO states (statename) VALUES ('Mississippi');
+INSERT INTO states (statename) VALUES ('Missouri');
+INSERT INTO states (statename) VALUES ('Montana');
+INSERT INTO states (statename) VALUES ('Nebraska');
+INSERT INTO states (statename) VALUES ('Nevada');
+INSERT INTO states (statename) VALUES ('New Hampshire');
+INSERT INTO states (statename) VALUES ('New Jersey');
+INSERT INTO states (statename) VALUES ('New Mexico');
+INSERT INTO states (statename) VALUES ('New York');
+INSERT INTO states (statename) VALUES ('North Carolina');
+INSERT INTO states (statename) VALUES ('North Dakota');
+INSERT INTO states (statename) VALUES ('Ohio');
+INSERT INTO states (statename) VALUES ('Oklahoma');
+INSERT INTO states (statename) VALUES ('Oregon');
+INSERT INTO states (statename) VALUES ('Pennsylvania');
+INSERT INTO states (statename) VALUES ('Rhode Island');
+INSERT INTO states (statename) VALUES ('South Carolina');
+INSERT INTO states (statename) VALUES ('South Dakota');
+INSERT INTO states (statename) VALUES ('Tennessee');
+INSERT INTO states (statename) VALUES ('Texas');
+INSERT INTO states (statename) VALUES ('Utah');
+INSERT INTO states (statename) VALUES ('Vermont');
+INSERT INTO states (statename) VALUES ('Virginia');
+INSERT INTO states (statename) VALUES ('Washington');
+INSERT INTO states (statename) VALUES ('West Virginia');
+INSERT INTO states (statename) VALUES ('Wisconsin');
+INSERT INTO states (statename) VALUES ('Wyoming');
