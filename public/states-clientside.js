@@ -19,8 +19,7 @@ function loadStates() {
 
             $("#ulTopics").append(
                 "<li>" +
-                state.statename + ", Visited: " +
-                state.visited +
+                state.statename +
                 "</li>");
         }
 
