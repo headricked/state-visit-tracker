@@ -14,13 +14,31 @@ function loadStates() {
         console.log("Back from the server with:");
         console.log(data);
 
-        for (var i = 0; i < data.states.length; i++) {
-            var state = data.states[i];
+        // let tableStates = `<table>`;
 
-            $("#ulTopics").append(
-                "<li>" +
-                state.statename +
-                "</li>");
+        // for (var i = 0; i < data.states.length; i++) {
+        //     var state = data.states[i];
+
+        //     $("#tableStates").append(
+        //         tableStates + `<tr><td>` +
+        //         state.statename + `</td></tr>`);
+        // }
+
+        $('#tableStates').append('<table></table>');
+        let tableStates = $('#tableStates').children();
+        for (i = 0; i < data.states.length; i++) {
+            let state = data.states[i];
+            tableStates.append(`
+                <tr>
+                    <td>${state.statename}</td>
+                    <td>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch${i}">
+                            <label class="custom-control-label" for="customSwitch${i}">Visted/Not-Visited</label>
+                        </div>
+                    </td>
+                </tr>
+            `);
         }
 
     })
