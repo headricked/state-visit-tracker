@@ -30,15 +30,30 @@ function loadStates() {
             let state = data.states[i];
             tableStates.append(`
                 <tr>
-                    <td>${state.statename}</td>
+                    <td>
+                        <label class="" for="customSwitch${i}">${state.statename}</label>
+                    </td>
                     <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="customSwitch${i}">
-                            <label class="custom-control-label" for="customSwitch${i}">Visted/Not-Visited</label>
+                            <label class="custom-control-label" for="customSwitch${i}"></label>
                         </div>
                     </td>
                 </tr>
             `);
+
+            // Add a "checked" symbol when clicking on a list item
+            var toggleItem = document.querySelector(`#customSwitch${i}`);
+            toggleItem.addEventListener('click', function (ev) {
+                if (ev.target.checked) {
+                    // ev.target.classList.toggle('checked');
+                    console.log(`Checked ${state.statename}`);
+                } else if (!ev.target.checked) {
+                    console.log(`Unchecked ${state.statename}`);
+                }
+            }, false);
+
+
         }
 
     })
@@ -61,7 +76,7 @@ function searchByBook() {
         for (var i = 0; i < data.list.length; i++) {
             var scripture = data.list[i];
 
-            $("#ulScriptures").append(
+            $("#tableStates").append(
                 "<li>" +
                 scripture.book + " " +
                 scripture.chapter + ":" +
