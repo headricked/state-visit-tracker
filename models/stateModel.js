@@ -6,6 +6,9 @@ const pool = new Pool({connectionString: db_url});
 
 function getAllStates(callback) {
     // get all the states from the DB
+
+    let sql = "SELECT id, statename FROM states";
+
     let results = {
         states: [
             { stateid: 1, statename: "Alabama"},

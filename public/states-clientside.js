@@ -19,6 +19,7 @@ function loadStates() {
 
             $("#ulTopics").append(
                 "<li>" +
+                state.stateid + " : " +
                 state.statename +
                 "</li>");
         }
