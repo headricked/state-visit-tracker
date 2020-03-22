@@ -8,14 +8,29 @@ function getAllStates(callback) {
     // get all the states from the DB
 
     let sql = `SELECT id, statename FROM states`;
+    // let sql = `SELECT * FROM persona`;
+
+    let qry = 
+            `
+                SELECT
+                    visitado_id,
+                    gente.first_name gente_first_name,
+                    gente.last_name gente_last_name,
+                    estado.estado_id,
+                    estado.estado_name estado_name
+                FROM
+                    estado
+                INNER JOIN visitado ON visitado.estado_id = estado.estado_id
+                INNER JOIN gente ON visitado.gente_id = gente.gente_id;
+            `;
 
     pool.query(sql, function (err, db_results) {
         if (err) {
             throw err;
         } else {
             // we received successful results from DB
-            // console.log("Back from the DB with:");
-            // console.log(db_results);
+            console.log("Back from the DB with:");
+            console.log(db_results);
 
             let results = {
                 states:db_results.rows
