@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +11,48 @@
     <link rel="stylesheet" href="stylesheets/main.css">
 
 </head>
+
+
 <body>
-    <h2>Track the U.S. states you've visited</h2>
-    <button onclick="loadStates()">Load States</button><br/>
 
+    <nav id="myHeader">
+        <header>
+            <h2>Track the U.S. states you've visited.</h2>
+            <button onclick="loadStates()">Load My States</button><br />
+            <!-- <input type="text" id="book" placeholder="Book"> <button onclick="searchByBook()">Search by Book</button><br/> -->
 
-    <!-- <input type="text" id="book" placeholder="Book"> <button onclick="searchByBook()">Search by Book</button><br/> -->
+            <!-- <input type="text" id="topic" placeholder="Topic"> <button onclick="searchByTopic()">Search by Topic</button><br/> -->
+        </header>
+    </nav>
 
-    <!-- <input type="text" id="topic" placeholder="Topic"> <button onclick="searchByTopic()">Search by Topic</button><br/> -->
+    <section class="content">
+        <div>
+            <!-- <h2>Results</h2> -->
+            <!-- <ul id="ulScriptures"></ul> -->
+            <div id="tableStates"></div>
+        </div>
+    </section>
 
+    <footer>
+        Copyright 2020 | David Headrick
+    </footer>
 
-    <div>
-        <!-- <h2>Results</h2> -->
-        <!-- <ul id="ulScriptures"></ul> -->
-        <hr/>
-        <div id="tableStates"></div>
-    </div>
+    <script>
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
 </body>
+
+
+
 </html>

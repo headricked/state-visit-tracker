@@ -35,7 +35,7 @@ function loadStates() {
                     </td>
                     <td>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch${i}">
+                            <input checked type="checkbox" class="custom-control-input" id="customSwitch${i}">
                             <label class="custom-control-label" for="customSwitch${i}"></label>
                         </div>
                     </td>
