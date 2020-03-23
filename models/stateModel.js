@@ -7,10 +7,10 @@ const pool = new Pool({ connectionString: db_url });
 function getAllStates(callback) {
     // get all the states from the DB
 
-    let sql = `SELECT id, statename FROM states`;
+    // let sql = `SELECT id, statename FROM states`;
     // let sql = `SELECT * FROM persona`;
 
-    let qry = 
+    let sql = 
             `
                 SELECT
                     visitado_id,
