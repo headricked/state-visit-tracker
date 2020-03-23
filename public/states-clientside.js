@@ -52,7 +52,7 @@ function loadStates() {
             tableStates.append(`
                 <tr>
                     <td>
-                        <label class="" for="customSwitch${i}">${state.statename}</label>
+                        <label class="" for="customSwitch${i}">${state.estado_id}</label>
                     </td>
                     <td>
                         <div class="custom-control custom-switch">
@@ -68,9 +68,9 @@ function loadStates() {
             toggleItem.addEventListener('click', function (ev) {
                 if (ev.target.checked) {
                     // ev.target.classList.toggle('checked');
-                    console.log(`Checked ${state.statename}`);
+                    console.log(`Checked ${state.estado_id}`);
                 } else if (!ev.target.checked) {
-                    console.log(`Unchecked ${state.statename}`);
+                    console.log(`Unchecked ${state.estado_id}`);
                 }
             }, false);
 
