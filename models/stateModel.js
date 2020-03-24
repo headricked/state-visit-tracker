@@ -7,10 +7,10 @@ const pool = new Pool({ connectionString: db_url });
 function getAllStates(callback) {
     // get all the states from the DB
 
-    // let sql = `SELECT id, statename FROM states`;
-    // let sql = `SELECT * FROM persona`;
+    let sql1 = `SELECT id, statename FROM states`;
+    let sql2 = `SELECT * FROM persona`;
 
-    let sql = 
+    let sql3 = 
             `
                 SELECT
                     visitado_id,
@@ -24,7 +24,21 @@ function getAllStates(callback) {
                 INNER JOIN gente ON visitado.gente_id = gente.gente_id;
             `;
 
-    pool.query(sql, function (err, db_results) {
+    let sql4 =
+            `
+            WITH visitedstate AS (
+                SELECT * FROM person
+                CROSS JOIN states
+              )
+                
+                SELECT * FROM visitedstate
+                LEFT JOIN visited
+                ON visitedstate.personid = visited.personid
+                WHERE visited.stateid = visitedstate.stateid
+                AND visited.personid = 11;
+            `;
+
+    pool.query(sql4, function (err, db_results) {
         if (err) {
             throw err;
         } else {
