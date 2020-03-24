@@ -72,8 +72,16 @@ INSERT INTO states (statename) VALUES ('Wyoming');
 
 -- data to populate person table
 INSERT INTO person (firstname, lastname) VALUES ('Alan', 'Alda');
-INSERT INTO person (firstname, lastname) VALUES ('Bob', 'Barker');
-INSERT INTO person (firstname, lastname) VALUES ('Charlie', 'Chapman');
+INSERT INTO person (firstname, lastname) VALUES ('Bob', 'Black');
+INSERT INTO person (firstname, lastname) VALUES ('Chet', 'Chan');
+INSERT INTO person (firstname, lastname) VALUES ('Doug', 'Dahl');
+INSERT INTO person (firstname, lastname) VALUES ('Ernie', 'Els');
+INSERT INTO person (firstname, lastname) VALUES ('Fred', 'Flyn');
+INSERT INTO person (firstname, lastname) VALUES ('Gus', 'Golic');
+INSERT INTO person (firstname, lastname) VALUES ('Hal', 'Hanks');
+INSERT INTO person (firstname, lastname) VALUES ('Igor', 'Ives');
+INSERT INTO person (firstname, lastname) VALUES ('Jay', 'Jones');
+INSERT INTO person (firstname, lastname) VALUES ('Kip', 'Keane');
 
 -- data to populate visited table
 INSERT INTO visited (personid, stateid) VALUES (1, 1);
@@ -81,7 +89,11 @@ INSERT INTO visited (personid, stateid) VALUES (1, 3);
 INSERT INTO visited (personid, stateid) VALUES (1, 5);
 INSERT INTO visited (personid, stateid) VALUES (2, 2);
 INSERT INTO visited (personid, stateid) VALUES (2, 4);
-INSERT INTO visited (personid, stateid) VALUES (3, 1);
+INSERT INTO visited (personid, stateid) VALUES (3, 21);
+INSERT INTO visited (personid, stateid) VALUES (4, 49);
+INSERT INTO visited (personid, stateid) VALUES (5, 10);
+INSERT INTO visited (personid, stateid) VALUES (5, 35);
+INSERT INTO visited (personid, stateid) VALUES (11, 11);
 
 
 -- milstones for user with person_id = 1
@@ -488,3 +500,56 @@ VALUES (
     '',
     'checked'
 );
+
+
+--1 personId crossjoined with all stateId's (result = P x S, where P = # of persons, and S = # of states)
+--2 left join personId onto the visitedId (some with NULLs, some with value's)
+--3 if visitedid is !Null for that personId, then set value to 1, else set value to 0
+
+-- STEP 1 (this works)
+SELECT * FROM person
+    CROSS JOIN states;
+
+-- STEP 2
+SELECT visited.id FROM person
+    LEFT JOIN visited
+    ON visited.id = person.id
+    WHERE visited.id IS NOT NULL;
+
+
+-- almost working example
+WITH visitedstate AS (
+  SELECT * FROM person
+  CROSS JOIN states)
+  -- SELECT * FROM visitedstate;
+  
+  SELECT * FROM visitedstate
+  LEFT JOIN visited
+  ON visitedstate.personid = visited.personid
+  WHERE visited.visitedid IS NOT NULL
+	;
+
+-- almost working example
+WITH visitedstate AS (
+  SELECT * FROM person
+  CROSS JOIN states)
+  
+  SELECT * FROM visitedstate
+  LEFT JOIN visited
+  ON visitedstate.personid = visited.personid
+  WHERE visited.stateid = visitedstate.stateid
+	;
+
+
+-- a variation on an almost working example
+WITH visitedstate AS (
+  SELECT * FROM person
+  CROSS JOIN states
+)
+  
+  SELECT * FROM visitedstate
+  LEFT JOIN visited
+  ON visitedstate.personid = visited.personid
+  WHERE visited.stateid = visitedstate.stateid
+  AND visited.personid = 11
+;
