@@ -1,21 +1,21 @@
 CREATE TABLE states
 (
-    id SERIAL PRIMARY KEY NOT NULL,
+    sid SERIAL PRIMARY KEY NOT NULL,
     statename VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE person
 (
-    id SERIAL PRIMARY KEY NOT NULL,
+    pid SERIAL PRIMARY KEY NOT NULL,
     firstname VARCHAR(100) NOT NULL,
     lastname VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE visited
 (
-    id SERIAL PRIMARY KEY NOT NULL,
-    personid INT NOT NULL REFERENCES person(id),
-    stateid INT NOT NULL REFERENCES states(id)
+    vid SERIAL PRIMARY KEY NOT NULL,
+    personid INT NOT NULL REFERENCES person(pid),
+    stateid INT NOT NULL REFERENCES states(sid)
 );
 
 -- data to populate states table
@@ -549,7 +549,7 @@ WITH visitedstate AS (
   
   SELECT * FROM visitedstate
   LEFT JOIN visited
-  ON visitedstate.personid = visited.personid
-  WHERE visited.stateid = visitedstate.stateid
+  ON visitedstate.pid = visited.personid
+  WHERE visited.stateid = visitedstate.sid
   AND visited.personid = 11
 ;

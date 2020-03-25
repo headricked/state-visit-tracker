@@ -33,21 +33,15 @@ function getAllStates(callback) {
                 
                 SELECT * FROM visitedstate
                 LEFT JOIN visited
-                ON visitedstate.personid = visited.personid
-                WHERE visited.stateid = visitedstate.stateid
-                AND visited.personid = 11;
+                ON visitedstate.pid = visited.personid
+                WHERE visited.stateid = visitedstate.sid
+                AND visited.personid = 11
+                ;
             `;
 
-    let sql5 =
-            `
-            WITH visitedstate AS (
-                SELECT * FROM person
-                CROSS JOIN states
-              )
-                SELECT * FROM visitedstate;
-            `;
 
-    pool.query(sql5, function (err, db_results) {
+
+    pool.query(sql4, function (err, db_results) {
         if (err) {
             throw err;
         } else {
