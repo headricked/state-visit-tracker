@@ -119,3 +119,31 @@ WITH visitedstate AS (
   -- WHERE visited.stateid IS NOT NULL
   -- AND visited.personid = 11
 ;
+
+
+
+
+
+
+--  test
+    WITH visitedstate AS (
+      SELECT * FROM person
+      CROSS JOIN states
+    ),
+    
+    a as(
+      SELECT visitedstate.personid, 
+      firstname, lastname, visited.stateid,
+      statename,
+      visitedid
+      FROM visitedstate
+       LEFT JOIN visited
+       ON visitedstate.personid = visited.personid
+       and visited.stateid = visitedstate.stateid
+    )
+    
+    select 
+    *, CASE WHEN visitedid is null THEN false ELSE true END as isvisited
+    from a 
+    
+    ;
