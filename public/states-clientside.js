@@ -45,40 +45,47 @@ function loadStates() {
 
         // }
 
+
         $('#tableStates').append('<table></table>');
         let tableStates = $('#tableStates').children();
-        for (i = 0; i < data.states.length; i++) {
-            let state = data.states[i];
-            tableStates.append(`
-                <tr>
-                    <td>
-                        <label class="" for="customSwitch${i}">${state.statename}</label>
-                    </td>
-                    <td>
-                        <div class="custom-control custom-switch">
-                            <input checked type="checkbox" class="custom-control-input" id="customSwitch${i}">
-                            <label class="custom-control-label" for="customSwitch${i}"></label>
-                        </div>
-                    </td>
-                </tr>
-            `);
+        for (k = 0; k < data.visited.length; k++) {
+            for(i = 0; i <= data.states.length; i++) { // TESTING
+                let state = data.states[i];
+                // let person = data.people[j]; // TESTING
+                let visit = data.visited[k]; // TESTING
 
-            // Add a "checked" symbol when clicking on a list item
-            var toggleItem = document.querySelector(`#customSwitch${i}`);
-            toggleItem.addEventListener('click', function (ev) {
-                if (ev.target.checked) {
-                    // ev.target.classList.toggle('checked');
-                    console.log(`Checked ${state.statename}`);
-                } else if (!ev.target.checked) {
-                    console.log(`Unchecked ${state.statename}`);
+                tableStates.append(`
+                    <tr>
+                        <td>
+                            <label class="" for="customSwitch${i}">${state.statename}</label>
+                        </td>
+                        <td>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch${i}">
+                                <label class="custom-control-label" for="customSwitch${i}"></label>
+                            </div>
+                        </td>
+                    </tr>
+                `);
+
+                // Add a "checked" symbol when clicking on a list item
+                var toggleItem = document.querySelector(`#customSwitch${i}`);
+                toggleItem.addEventListener('click', function (ev) {
+                    if (ev.target.checked) {
+                        // ev.target.classList.toggle('checked');
+                        console.log(`Checked ${state.statename}`);
+                    } else if (!ev.target.checked) {
+                        console.log(`Unchecked ${state.statename}`);
+                    }
+                }, false);
+
+                if (visit.stateid === state.sid) {
+                    document.getElementById(`customSwitch${i}`).checked = true;
+                    k++;
                 }
-            }, false);
-
-
+            }
         }
-
     })
-
 }
 
 function searchByBook() {
