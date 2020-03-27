@@ -3,11 +3,12 @@ const db_url = process.env.DATABASE_URL;
 // console.log("db_url: " + db_url);
 const pool = new Pool({ connectionString: db_url });
 
+let myId = 3;
 
 function getAllStates(callback) {
     // get all the states from the DB
 
-    let sql1 = `SELECT id, statename FROM states`;
+    let sql1 = `SELECT sid, statename FROM states`;
     let sql2 = `SELECT * FROM persona`;
 
     let sql3 = 
@@ -126,23 +127,54 @@ function getAllStates(callback) {
         ]
     };
 
-    callback(null, sql5); // for testing purposes because not making a query to database
+    let sql6 = `
+                    WITH visitedstate AS (
+                        SELECT * FROM person
+                        CROSS JOIN states
+                    ),
+                    
+                    statesvisited AS(
+                        SELECT
+                            visitedid,
+                            visitedstate.stateid,
+                            statename
+                        FROM visitedstate
+                        LEFT JOIN visited
+                        ON visitedstate.personid = visited.personid
+                        AND visited.stateid = visitedstate.stateid
+                        WHERE visitedstate.personid = ${myId}
+                    )
+                    
+                    SELECT 
+                    *, CASE
+                        WHEN visitedid IS NULL
+                        THEN FALSE
+                        ELSE TRUE
+                        END AS isvisited
+                        FROM statesvisited;
+                `;
+
+    // console.log('sql5:');
+    // console.log(sql5);
+
+    // callback(null, sql5); // for testing purposes because not making a query to database
 
 
-    // pool.query(sql5, function (err, db_results) {
-    //     if (err) {
-    //         throw err;
-    //     } else {
-    //         // we received successful results from DB
-    //         console.log("Back from the DB with:");
-    //         console.log(db_results);
+    pool.query(sql6, function (err, db_results) {
+        if (err) {
+            throw err;
+        } else {
+            // we received successful results from DB
+            console.log("Back from the DB with:");
+            console.log(db_results);
 
-    //         let results = {
-    //             states:db_results.rows
-    //         };
-    //         callback(null, results);
-    //     }
-    // });
+            let results = {
+                // states:db_results.rows
+                statesvisited:db_results.rows
+            };
+            callback(null, results);
+        }
+    });
 
 }
 

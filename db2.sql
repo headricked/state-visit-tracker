@@ -125,7 +125,7 @@ WITH visitedstate AS (
 
 
 
---  test
+--  THIS WORKS
     WITH visitedstate AS (
       SELECT * FROM person
       CROSS JOIN states
@@ -147,3 +147,30 @@ WITH visitedstate AS (
     from a 
     
     ;
+
+-- test query for user 5
+WITH visitedstate AS (
+      SELECT * FROM person
+      CROSS JOIN states
+    ),
+    
+    statesvisited AS(
+      SELECT
+      	visitedid,
+      	visitedstate.stateid,
+      	statename
+      FROM visitedstate
+       LEFT JOIN visited
+       ON visitedstate.personid = visited.personid
+       AND visited.stateid = visitedstate.stateid
+      WHERE visitedstate.personid = 5
+    )
+    
+    SELECT 
+    *, CASE
+    	WHEN visitedid IS NULL
+        THEN FALSE
+        ELSE TRUE
+        END AS isvisited
+        FROM statesvisited
+ ;

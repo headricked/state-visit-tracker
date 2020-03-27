@@ -46,45 +46,86 @@ function loadStates() {
         // }
 
 
+        // $('#tableStates').append('<table></table>');
+        // let tableStates = $('#tableStates').children();
+        // for (k = 0; k < data.visited.length; k++) {
+        //     for(i = 0; i <= data.states.length; i++) { // TESTING
+        //         let state = data.states[i];
+        //         // let person = data.people[j]; // TESTING
+        //         let visit = data.visited[k]; // TESTING
+
+        //         tableStates.append(`
+        //             <tr>
+        //                 <td>
+        //                     <label class="" for="customSwitch${i}">${state.statename}</label>
+        //                 </td>
+        //                 <td>
+        //                     <div class="custom-control custom-switch">
+        //                         <input type="checkbox" class="custom-control-input" id="customSwitch${i}">
+        //                         <label class="custom-control-label" for="customSwitch${i}"></label>
+        //                     </div>
+        //                 </td>
+        //             </tr>
+        //         `);
+
+        //         // Add a "checked" symbol when clicking on a list item
+        //         var toggleItem = document.querySelector(`#customSwitch${i}`);
+        //         toggleItem.addEventListener('click', function (ev) {
+        //             if (ev.target.checked) {
+        //                 // ev.target.classList.toggle('checked');
+        //                 console.log(`Checked ${state.statename}`);
+        //             } else if (!ev.target.checked) {
+        //                 console.log(`Unchecked ${state.statename}`);
+        //             }
+        //         }, false);
+
+        //         if (visit.stateid === state.sid) {
+        //             document.getElementById(`customSwitch${i}`).checked = true;
+        //             k++;
+        //         }
+        //     }
+        // }
+
+
         $('#tableStates').append('<table></table>');
         let tableStates = $('#tableStates').children();
-        for (k = 0; k < data.visited.length; k++) {
-            for(i = 0; i <= data.states.length; i++) { // TESTING
-                let state = data.states[i];
-                // let person = data.people[j]; // TESTING
-                let visit = data.visited[k]; // TESTING
+        for (k = 0; k < data.statesvisited.length; k++) {
+                let statename = data.statesvisited[k].statename;
+                let stateid = data.statesvisited[k].stateid;
+                let isvisited = data.statesvisited[k].isvisited;
 
                 tableStates.append(`
                     <tr>
                         <td>
-                            <label class="" for="customSwitch${i}">${state.statename}</label>
+                            <label class="" for="customSwitch${k}">${statename}</label>
                         </td>
                         <td>
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch${i}">
-                                <label class="custom-control-label" for="customSwitch${i}"></label>
+                                <input type="checkbox" class="custom-control-input" id="customSwitch${k}">
+                                <label class="custom-control-label" for="customSwitch${k}"></label>
                             </div>
                         </td>
                     </tr>
                 `);
 
                 // Add a "checked" symbol when clicking on a list item
-                var toggleItem = document.querySelector(`#customSwitch${i}`);
+                var toggleItem = document.querySelector(`#customSwitch${k}`);
                 toggleItem.addEventListener('click', function (ev) {
                     if (ev.target.checked) {
                         // ev.target.classList.toggle('checked');
-                        console.log(`Checked ${state.statename}`);
+                        console.log(`Checked ${statename}`);
                     } else if (!ev.target.checked) {
-                        console.log(`Unchecked ${state.statename}`);
+                        console.log(`Unchecked ${statename}`);
                     }
                 }, false);
 
-                if (visit.stateid === state.sid) {
-                    document.getElementById(`customSwitch${i}`).checked = true;
-                    k++;
+                if (isvisited === true) {
+                    document.getElementById(`customSwitch${k}`).checked = true;
+                    // k++;
                 }
             }
-        }
+    
+
     })
 }
 
