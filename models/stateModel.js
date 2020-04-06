@@ -3,7 +3,7 @@ const db_url = process.env.DATABASE_URL;
 // console.log("db_url: " + db_url);
 const pool = new Pool({ connectionString: db_url });
 
-let myId = 3;
+let myId = 5;
 
 function getAllStates(callback) {
     // get all the states from the DB
@@ -208,10 +208,32 @@ function getStateById(id, callback) {
     callback(null, result);
 }
 
+
+
+let sql7 = `INSERT INTO visited (personid, stateid) VALUES (${myId}, 35);`;
+
 function insertNewState(name, callback) {
     // create the new state in the DB with the provided name
-    let results = { success: true };
-    callback(null, results);
+    // let results = { success: true };
+
+    pool.query(sql7, function (err, db_results) {
+        if (err) {
+            throw err;
+        } else {
+            // we received successful results from DB
+            console.log("Sent to DB:");
+            console.log(db_results);
+
+            let results = {
+                // states:db_results.rows
+                visited:db_results.rows
+            };
+            callback(null, results);
+        }
+    });
+
+
+    // callback(null, results);
 }
 
 module.exports = {
