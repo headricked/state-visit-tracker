@@ -53,8 +53,6 @@ let statesData = {"type":"FeatureCollection","features":[
     {"type":"Feature","id":"72","properties":{"name":"Puerto Rico","density":1082 },"geometry":{"type":"Polygon","coordinates":[[[-66.448338,17.984326],[-66.771478,18.006234],[-66.924832,17.929556],[-66.985078,17.973372],[-67.209633,17.956941],[-67.154863,18.19245],[-67.269879,18.362235],[-67.094617,18.515589],[-66.957694,18.488204],[-66.409999,18.488204],[-65.840398,18.433435],[-65.632274,18.367712],[-65.626797,18.203403],[-65.730859,18.186973],[-65.834921,18.017187],[-66.234737,17.929556],[-66.448338,17.984326]]]}}
     ]};
 
-// let accessToken = `pk.eyJ1IjoiZGF2aWRoZWFkcmljayIsImEiOiJjazhxaHFvMDYwNDJmM2RwZDU5eGxhM3RmIn0.Ee9aVeK42wnrjBJrvDafIA`;
-
 let myLat = 38;
 let myLon = -96;
 let myZoom = 4;
@@ -62,7 +60,6 @@ let accessToken = `pk.eyJ1IjoiZGF2aWRoZWFkcmljayIsImEiOiJjazhxaHFvMDYwNDJmM2RwZD
 let map = L.map('map').setView([myLat, myLon], myZoom);
 
 L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${accessToken}`, {
-    // id: 'mapbox/light-v9',
     id: 'mapbox/dark-v10',
     attribution: `'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>`,
     tileSize: 512,
@@ -70,4 +67,6 @@ L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(map);
 
 L.geoJson(statesData).addTo(map);
+
+export { statesData };
 

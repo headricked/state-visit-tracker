@@ -79,18 +79,15 @@ td {
   z-index: 1;
 }
 
-/* .sticky + .content {
-  padding-top: 102px;
-  padding-top: 380px;
-} */
-
 #map { height: 370px; z-index: 0;}
 
 g > path {
   stroke: #568FA0;
-  fill: #568FA0;
+  stroke-width: 0.025rem;
+  fill: none;
 }
 
-g > path {
-  stroke-width: .05rem;
+.visited {
+  fill: #568FA0;
+  fill-opacity: 0.5;
 }
