@@ -114,10 +114,14 @@ function loadStates() {
                 if (ev.target.checked) {
                     // ev.target.classList.toggle('checked');
                     console.log(`Checked ${statename}`);
-                    addVisitedState();
+                    $.post("/addVisitedState", null, function (data) {
+                        console.log('addVisitedState()');
+                    });
                 } else if (!ev.target.checked) {
                     console.log(`Unchecked ${statename}`);
-                    deleteVisitedState();
+                    $.post("/deleteVisitedState", null, function (data) {
+                        console.log('deleteVisitedState()');
+                    });                    
                 }
             }, false);
 
