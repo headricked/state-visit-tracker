@@ -90,11 +90,11 @@ function loadStates() {
         $('#tableStates').append('<table></table>');
         let tableStates = $('#tableStates').children();
         for (k = 0; k < data.statesvisited.length; k++) {
-                let statename = data.statesvisited[k].statename;
-                let stateid = data.statesvisited[k].stateid;
-                let isvisited = data.statesvisited[k].isvisited;
+            let statename = data.statesvisited[k].statename;
+            let stateid = data.statesvisited[k].stateid;
+            let isvisited = data.statesvisited[k].isvisited;
 
-                tableStates.append(`
+            tableStates.append(`
                     <tr>
                         <td>
                             <label class="" for="customSwitch${k}">${statename}</label>
@@ -108,23 +108,26 @@ function loadStates() {
                     </tr>
                 `);
 
-                // Add a "checked" symbol when clicking on a list item
-                var toggleItem = document.querySelector(`#customSwitch${k}`);
-                toggleItem.addEventListener('click', function (ev) {
-                    if (ev.target.checked) {
-                        // ev.target.classList.toggle('checked');
-                        console.log(`Checked ${statename}`);
-                    } else if (!ev.target.checked) {
-                        console.log(`Unchecked ${statename}`);
-                    }
-                }, false);
-
-                if (isvisited === true) {
-                    document.getElementById(`customSwitch${k}`).checked = true;
-                    // k++;
+            // Add a "checked" symbol when clicking on a list item
+            var toggleItem = document.querySelector(`#customSwitch${k}`);
+            toggleItem.addEventListener('click', function (ev) {
+                if (ev.target.checked) {
+                    // ev.target.classList.toggle('checked');
+                    console.log(`Checked ${statename}`);
+                    addVisitedState();
+                } else if (!ev.target.checked) {
+                    console.log(`Unchecked ${statename}`);
+                    deleteVisitedState();
                 }
+            }, false);
+
+            // Add a "checked" symbol if true
+            if (isvisited === true) {
+                document.getElementById(`customSwitch${k}`).checked = true;
+                // k++;
             }
-    
+        }
+
 
     })
 }

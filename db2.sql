@@ -1,21 +1,21 @@
 CREATE TABLE states
 (
-    sid SERIAL PRIMARY KEY NOT NULL,
+    stateid SERIAL PRIMARY KEY NOT NULL,
     statename VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE person
 (
-    pid SERIAL PRIMARY KEY NOT NULL,
+    personid SERIAL PRIMARY KEY NOT NULL,
     firstname VARCHAR(100) NOT NULL,
     lastname VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE visited
 (
-    vid SERIAL PRIMARY KEY NOT NULL,
-    personid INT NOT NULL REFERENCES person(pid),
-    stateid INT NOT NULL REFERENCES states(sid)
+    visitedid SERIAL PRIMARY KEY NOT NULL,
+    personid INT NOT NULL REFERENCES person(personid),
+    stateid INT NOT NULL REFERENCES states(stateid)
 );
 
 -- data to populate states table
@@ -72,28 +72,31 @@ INSERT INTO states (statename) VALUES ('Wyoming');
 
 -- data to populate person table
 INSERT INTO person (firstname, lastname) VALUES ('Alan', 'Alda');
--- INSERT INTO person (firstname, lastname) VALUES ('Bob', 'Black');
--- INSERT INTO person (firstname, lastname) VALUES ('Chet', 'Chan');
--- INSERT INTO person (firstname, lastname) VALUES ('Doug', 'Dahl');
--- INSERT INTO person (firstname, lastname) VALUES ('Ernie', 'Els');
--- INSERT INTO person (firstname, lastname) VALUES ('Fred', 'Flyn');
--- INSERT INTO person (firstname, lastname) VALUES ('Gus', 'Golic');
--- INSERT INTO person (firstname, lastname) VALUES ('Hal', 'Hanks');
--- INSERT INTO person (firstname, lastname) VALUES ('Igor', 'Ives');
--- INSERT INTO person (firstname, lastname) VALUES ('Jay', 'Jones');
--- INSERT INTO person (firstname, lastname) VALUES ('Kip', 'Keane');
+INSERT INTO person (firstname, lastname) VALUES ('Bob', 'Black');
+INSERT INTO person (firstname, lastname) VALUES ('Chet', 'Chan');
+INSERT INTO person (firstname, lastname) VALUES ('Doug', 'Dahl');
+INSERT INTO person (firstname, lastname) VALUES ('Ernie', 'Els');
+INSERT INTO person (firstname, lastname) VALUES ('Fred', 'Flyn');
+INSERT INTO person (firstname, lastname) VALUES ('Gus', 'Golic');
+INSERT INTO person (firstname, lastname) VALUES ('Hal', 'Hanks');
+INSERT INTO person (firstname, lastname) VALUES ('Igor', 'Ives');
+INSERT INTO person (firstname, lastname) VALUES ('Jay', 'Jones');
+INSERT INTO person (firstname, lastname) VALUES ('Kip', 'Keane');
 
 -- data to populate visited table
 INSERT INTO visited (personid, stateid) VALUES (1, 35);
 INSERT INTO visited (personid, stateid) VALUES (1, 3);
--- INSERT INTO visited (personid, stateid) VALUES (1, 5);
--- INSERT INTO visited (personid, stateid) VALUES (2, 2);
--- INSERT INTO visited (personid, stateid) VALUES (2, 4);
--- INSERT INTO visited (personid, stateid) VALUES (3, 21);
--- INSERT INTO visited (personid, stateid) VALUES (4, 49);
--- INSERT INTO visited (personid, stateid) VALUES (5, 10);
--- INSERT INTO visited (personid, stateid) VALUES (5, 35);
--- INSERT INTO visited (personid, stateid) VALUES (11, 11);
+INSERT INTO visited (personid, stateid) VALUES (1, 5);
+INSERT INTO visited (personid, stateid) VALUES (2, 2);
+INSERT INTO visited (personid, stateid) VALUES (2, 4);
+INSERT INTO visited (personid, stateid) VALUES (3, 21);
+INSERT INTO visited (personid, stateid) VALUES (4, 49);
+INSERT INTO visited (personid, stateid) VALUES (5, 1);
+INSERT INTO visited (personid, stateid) VALUES (5, 5);
+INSERT INTO visited (personid, stateid) VALUES (5, 10);
+INSERT INTO visited (personid, stateid) VALUES (5, 35);
+INSERT INTO visited (personid, stateid) VALUES (5, 50);
+INSERT INTO visited (personid, stateid) VALUES (11, 11);
 
 --  THE QUERY
 WITH visitedstate AS (
@@ -173,4 +176,10 @@ WITH visitedstate AS (
         ELSE TRUE
         END AS isvisited
         FROM statesvisited
- ;
+;
+
+-- INSERTION STATEMENT - USE FOR WHEN CHECKBOX IS CHANGED TO 'CHECKED'
+INSERT INTO visited (personid, stateid) VALUES (5, 10);
+
+-- DELETION STATEMENT - USE FOR WHEN CHECKBOX IS CHANGED TO 'UNCHECKED'
+DELETE FROM visited WHERE stateid = 10 AND personid = 5;

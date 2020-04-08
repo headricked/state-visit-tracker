@@ -28,8 +28,28 @@ function postState(req, res) {
     });
 }
 
+// FOR TESTING PURPOSES
+function addVisited(request, response) {
+    let checked = request.body.checked;
+    console.log(`Adding a visited state to the visited table: ${checked}`);
+    stateModel.addVisitedState(checked, function(error, results) {
+        response.json(results);
+    });
+}
+
+// FOR TESTING PURPOSES
+function deleteVisited(request, response) {
+    let checked = request.body.checked;
+    console.log(`Adding a visited state to the visited table: ${checked}`);
+    stateModel.deleteVisitedState(checked, function(error, results) {
+        response.json(results);
+    });
+}
+
 module.exports = {
     getStateList: getStateList,
     getState: getState,
-    postState: postState
+    postState: postState,
+    addVisited: addVisited,
+    deleteVisited: deleteVisited
 };

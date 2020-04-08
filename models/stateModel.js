@@ -3,7 +3,9 @@ const db_url = process.env.DATABASE_URL;
 // console.log("db_url: " + db_url);
 const pool = new Pool({ connectionString: db_url });
 
-let myId = 5;
+let myId    = 5;
+let stateid = 10;
+
 
 function getAllStates(callback) {
     // get all the states from the DB
@@ -178,27 +180,27 @@ function getAllStates(callback) {
 
 }
 
-function loadStates(state, callback) {
-    console.log("Searching the DB for topic: " + state);
+// function loadStates(state, callback) {
+//     console.log("Searching the DB for topic: " + state);
 
-    let results = {
-        list: [
-            {
-                id: 1,
-                state: state
-            },
-            {
-                id: 2,
-                state: state
-            },
-            {
-                id: 3,
-                state: state
-            }
-        ]
-    };
-    callback(null, results);
-}
+//     let results = {
+//         list: [
+//             {
+//                 id: 1,
+//                 state: state
+//             },
+//             {
+//                 id: 2,
+//                 state: state
+//             },
+//             {
+//                 id: 3,
+//                 state: state
+//             }
+//         ]
+//     };
+//     callback(null, results);
+// }
 
 
 
@@ -210,7 +212,7 @@ function getStateById(id, callback) {
 
 
 
-let sql7 = `INSERT INTO visited (personid, stateid) VALUES (${myId}, 35);`;
+let sql7 = `INSERT INTO visited (personid, stateid) VALUES (${myId}, 50);`;
 
 function insertNewState(name, callback) {
     // create the new state in the DB with the provided name
@@ -236,9 +238,57 @@ function insertNewState(name, callback) {
     // callback(null, results);
 }
 
+let sqlAdd    = `INSERT INTO visited (personid, stateid) VALUES (${myId}, ${stateid});`;
+let sqlDelete = `DELETE FROM visited WHERE stateid = ${stateid} AND personid = ${myId};`;
+
+function addVisitedState(checked, callback) {
+    // create the new state in the DB with the provided name
+    // let results = { success: true };
+
+    pool.query(sqlAdd, function (err, db_results) {
+        if (err) {
+            throw err;
+        } else {
+            // we received successful results from DB
+            console.log("Sent to DB:");
+            console.log(db_results);
+
+            let results = {
+                // states:db_results.rows
+                visited:db_results.rows
+            };
+            callback(null, results);
+        }
+    });
+}
+
+function deleteVisitedState(checked, callback) {
+    // create the new state in the DB with the provided name
+    // let results = { success: true };
+
+    pool.query(sqlDelete, function (err, db_results) {
+        if (err) {
+            throw err;
+        } else {
+            // we received successful results from DB
+            console.log("Sent to DB:");
+            console.log(db_results);
+
+            let results = {
+                // states:db_results.rows
+                visited:db_results.rows
+            };
+            callback(null, results);
+        }
+    });
+}
+
+
 module.exports = {
     getAllStates: getAllStates,
-    loadStates: loadStates,
+    // loadStates: loadStates,
     getStateById: getStateById,
-    insertNewState: insertNewState
+    insertNewState: insertNewState,
+    addVisitedState: addVisitedState,
+    deleteVisitedState: deleteVisitedState
 }

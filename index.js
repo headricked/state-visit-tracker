@@ -19,7 +19,9 @@ app.use(express.urlencoded({extended: true})); // support url encoded bodies
 
 app.get("/states", stateController.getStateList);
 app.get("/state", stateController.getState);
-app.post("/state", stateController.postState);
+// app.post("/state", stateController.postState);
+app.post("/state", stateController.addVisited);
+app.post("/state", stateController.deleteVisited);
 
 app.get("/search", scriptureController.search);
 app.get("/scriptures", scriptureController.getScriptureList);

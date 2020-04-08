@@ -1,5 +1,5 @@
 * {
-  background-color: #8E2E2E;
+  /* background-color: #8E2E2E; */
   color: #F9F6ED;
 }
 
@@ -21,6 +21,10 @@ button {
   border: none;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: transform .2s;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 button:hover {
@@ -44,9 +48,12 @@ footer {
   text-align: center;
 }
 
+h2 { text-align: center;}
+
 header {
   padding-bottom: 10px;
   border-bottom: 1px solid #F9F6ED;
+  background-color: #8E2E2E;
 }
 
 td {
@@ -65,12 +72,25 @@ td {
 }
 
 .sticky {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 1;
 }
 
-.sticky + .content {
+/* .sticky + .content {
   padding-top: 102px;
+  padding-top: 380px;
+} */
+
+#map { height: 370px; z-index: 0;}
+
+g > path {
+  stroke: #568FA0;
+  fill: #568FA0;
+}
+
+g > path {
+  stroke-width: .05rem;
 }
